@@ -1,0 +1,1 @@
+declare module 'src/lib/common/Toast.jsx'
