@@ -5,7 +5,7 @@ import { ErrorLabel } from "../common/Labels";
 
 export interface SelectSimpleProps{
     options?:ISelectOptions[]; 
-    value:string | number;
+    value?:string | number;
     onChange:Function;
     unclearable?:boolean; 
     placeholder?:string;

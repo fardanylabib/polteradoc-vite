@@ -22,6 +22,7 @@ export const AppContext = createContext<IAppContextValue>({
 export const AppProvider = ({children=<div/>}) => {
     const [userAuth, setUserAuth] = useState<IUsersPermissions>(UsersPermisisons());
     const setUserWithExpiryDate = async(_userPermission: IUsersPermissions) => {
+        console.log(_userPermission);
         if(!_userPermission){
           return;
         }
@@ -38,6 +39,7 @@ export const AppProvider = ({children=<div/>}) => {
             // Save to local storage
             window.localStorage.removeItem(LOCAL_STORAGE_KEY);
             setUserAuth(UsersPermisisons());
+            window.location.pathname = "/";
         } catch (error) {
             console.log(error);
         }

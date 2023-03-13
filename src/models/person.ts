@@ -9,6 +9,9 @@ export interface IPerson {
     companies?: ICompanyEntityResponseCollection
     documents?: IDocumentEntityResponseCollection
     photo?: IUploadFileEntityResponse
+    photoID?: number
+    companiesID?: number[]
+    documentsID?: number[]
 }
   
 export interface IPersonEntity {
@@ -22,3 +25,24 @@ export interface IPersonEntityResponse {
 export interface IPersonEntityResponseCollection {
     data: IPersonEntity[] 
 }
+
+export const PersonEntityContainer = ():IPersonEntityResponse => ({
+    data:{
+        attributes:Person()
+    }
+});
+
+export const Person = ():IPerson=> ({
+    identity:"",
+    idType:"",
+    name:"",
+    photo: {
+        data: {
+            attributes:{
+                previewUrl:"",
+                url:""
+            }
+        }
+    },
+    photoID:0
+})

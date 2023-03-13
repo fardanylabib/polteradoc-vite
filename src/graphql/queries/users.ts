@@ -30,6 +30,14 @@ export const USER_PERMISSIONS_ME = gql`
                                             name
                                             identity
                                             idType
+                                            photo{
+                                                data{
+                                                    id
+                                                    attributes{
+                                                        url
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -47,6 +55,14 @@ export const USER_PERMISSIONS_ME = gql`
                                             name
                                             identity
                                             idType
+                                            photo{
+                                                data{
+                                                    id
+                                                    attributes{
+                                                        url
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

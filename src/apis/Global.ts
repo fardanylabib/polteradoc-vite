@@ -101,6 +101,35 @@ export const httpGet = async (url:string):Promise<IApiResponse> => {
     }
 }
 
+export const httpUpload = async (url:string, file:any) => {
+    try{
+        const formData = new FormData();
+        formData.append("files", file);
+        const resp = await fetch(url,{
+            method: 'POST',
+            headers:{ 
+                'Authorization' : `Bearer ${window.token}`
+            },
+            body: formData
+        });
+        const respJson = await resp.json();
+        if(respJson[0]){
+            return {
+                error: "",
+                data: respJson[0]
+            }
+        }return {
+            error: "",
+            data: true
+        }
+    }catch(err){
+        return {
+            data: null,
+            error: JSON.stringify(err)
+        }
+    }
+}
+
 export const httpPost = async (url:string, data:any) => {
     try{
         const resp = await fetch(url,{

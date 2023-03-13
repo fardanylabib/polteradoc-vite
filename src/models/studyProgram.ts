@@ -11,6 +11,10 @@ export interface IStudyProgramEntityResponse {
     data: IStudyProgramEntity
 }
 
+export interface IStudyProgramEntityResponseCollection {
+    data: IStudyProgramEntity[]
+}
+
 export interface IStudyProgramEntity {
     id?: number
     attributes: IStudyProgram

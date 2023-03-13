@@ -9,12 +9,12 @@ import { IUsersPermissionsLoginInput, UsersPermissionsLoginInput } from "../../m
 import {IStudentEntity, Student} from "../../models/student";
 
 export default function ProfileManager(){
-    const {userAuth} = useContext(AppContext);
-    const {data,loading,error} = useQuery(STUDENT_GET_BY_ID, {
-        variables:{
-            id: 1
-        }
-    });
+    // const {userAuth} = useContext(AppContext);
+    // const {data,loading,error} = useQuery(STUDENT_GET_BY_ID, {
+    //     variables:{
+    //         id: 1
+    //     }
+    // });
     
     // const formik = useFormik<IUsersPermissionsLoginInput>({
     //     initialValues:Student(),

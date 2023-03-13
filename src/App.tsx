@@ -1,5 +1,6 @@
 import { Suspense, lazy} from 'react';
 import "flatpickr/dist/themes/material_green.css";
+import 'react-tooltip/dist/react-tooltip.css';
 import { AppContext, AppProvider,IAppContextValue } from "./AppContext";
 import { ApolloProvider } from '@apollo/client';
 import {secureClient, openClient} from './graphql/apolloClient';

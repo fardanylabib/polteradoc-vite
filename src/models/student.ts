@@ -6,10 +6,14 @@ import { IUsersPermissionsEntityResponse } from "./user"
 export interface IStudent{
     class: string
     year: string
-    studyProgram: IStudyProgramEntityResponse
+    studyProgram?: IStudyProgramEntityResponse
     projects?: IProjectEntityResponseCollection
     user: IUsersPermissionsEntityResponse
     person: IPersonEntityResponse
+    studyProgramID?: number
+    projectsID?: number[]
+    userID?: number
+    personID?: number
 }
 
 export interface IStudentRelationResponseCollection {
@@ -28,17 +32,9 @@ export interface IStudentEntity {
 export const Student = ():IStudent => ({
     class:"",
     year:"",
-    studyProgram:{
-        data:{
-            id:-1,
-            attributes:{
-                name:""
-            }
-        }
-    },
     user:{
         data:{
-            atributes:{
+            attributes:{
                 username:""
             }
         }
@@ -48,7 +44,7 @@ export const Student = ():IStudent => ({
             attributes:{
                 name:"",
                 identity:"",
-                idType:""
+                idType:"NRP"
             }
         }
     }

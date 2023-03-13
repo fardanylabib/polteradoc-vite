@@ -27,7 +27,7 @@ export interface IUsersPermissionsEntityResponse{
 
 export interface IUsersPermissions {
     jwt: string;
-    user?: IUsersPermissionsMe|IUsersPermissionsUser;
+    user?: IUsersPermissionsUser;
     expired?: string;
 }
 

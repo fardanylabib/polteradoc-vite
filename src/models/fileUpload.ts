@@ -11,7 +11,7 @@ export interface IUploadFile {
   }
 
 export interface IUploadFileEntity{
-    id: number
+    id?: number
     attributes: IUploadFile
 }
 export interface IUploadFileEntityResponse {
@@ -21,4 +21,10 @@ export interface IUploadFileEntityResponse {
 export const UploadedFile = ():IUploadFile =>({
     url:"",
     previewUrl:""
-})
+});
+
+export const UploadFileEntityContainer=():IUploadFileEntityResponse=>({
+    data:{
+        attributes: UploadedFile()
+    }
+});

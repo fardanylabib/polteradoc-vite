@@ -21,7 +21,8 @@
     "react-flatpickr": "^3.10.13",
     "react-router-dom": "^6.8.1",
     "react-select": "^5.7.0",
-    "react-tiny-popover": "^7.2.4"
+    "react-tiny-popover": "^7.2.4",
+    "react-tooltip": "^5.10.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

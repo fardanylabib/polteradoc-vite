@@ -1,6 +1,6 @@
 import { HeroIcon } from '../common/HeroIcon';
 import {adminMenu, routes} from '../../constants/menu';
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { cloneDeep, get, set } from 'lodash';
 import { useNavigate } from 'react-router';
 import { AppContext } from '../../AppContext';
@@ -10,9 +10,12 @@ import { useLazyQuery } from '@apollo/client';
 import { USER_PERMISSIONS_ME } from '../../graphql/queries/users';
 import { Loading } from '../common/Loading';
 import { IUsersPermissions, IUsersPermissionsEntityResponse } from '../../models/user';
+import { API_HOST } from '../../constants/Env';
+import { getFullMediaPath } from '../../helper/mediaHepler';
+import { Tooltip } from 'react-tooltip';
 
 export const Layout = ({children=<div/>}) =>{
-    const {userAuth, setUserWithExpiryDate} = useContext(AppContext);
+    const {userAuth, setUserWithExpiryDate, removeUserAuth} = useContext(AppContext);
     const [menuState, setMenuState] = useState<any>({menu:[]});
     const [clickId, setClickId] = useState(0);
     const [title, setTitle] = useState("Beranda");
@@ -21,7 +24,8 @@ export const Layout = ({children=<div/>}) =>{
     const navigate = useNavigate();
     const [getUser, {loading:usrLoading, error:usrError, data:usrData}] = useLazyQuery(USER_PERMISSIONS_ME);
   
-    const userRole = userAuth?.user?.role?.data.attributes.name;
+    const userRole = userAuth?.user?.role?.data.attributes.name;    
+    const userPhoto = userAuth.user?.student?.data?.attributes.person.data?.attributes.photo?.data?.attributes.url;
 
     const selectPath = (obj:any, path:string, titlePath:string, url:string) => {
         if(obj.submenu){
@@ -144,14 +148,28 @@ export const Layout = ({children=<div/>}) =>{
                     {
                         usrLoading? 
                         <div className='w-20'><Loading/> </div>:
-                        <div className="rounded-full w-8 h-8 hover:bg-slate-100 cursor-pointer flex flex-col ml-2"
-                            onClick={()=>navigate(routes.PROFILE)}
-                        >
-                            <HeroIcon className="w-5 m-auto" name="UserIcon"/>
-                        </div>
+                        <Fragment>
+                            <div className='flex items-center'>
+                                <div className='text-xs mr-3'>
+                                    <p className='font-bold'>{userAuth.user?.username}</p>
+                                    <p>{userRole}</p>
+                                </div>
+                                <a data-tooltip-id="avatar" className="rounded-full w-9 h-9 hover:bg-slate-100 cursor-pointer flex flex-col ml-2 overflow-hidden">
+                                    {
+                                        userPhoto? <img src={getFullMediaPath(userPhoto)} alt="profile"/> : <HeroIcon className="w-5 m-auto" name="UserIcon"/>                           
+                                    }
+                                </a>
+                            </div>
+                            <Tooltip id="avatar" clickable openOnClick place="left">
+                                <div className="cursor-pointer text-sm">
+                                    <div className="border-b py-2 hover:font-bold" onClick={()=>navigate(routes.PROFILE)}>Lihat Profil</div>
+                                    <div className="py-2 hover:font-bold text-red-500" onClick={()=>removeUserAuth()}>Log Out</div>
+                                </div>
+                            </Tooltip>
+                        </Fragment>
                     }
                 </div>
-                <div className="flex-grow overflow-hidden z-10">
+                <div className="flex-grow overflow-hidden">
                     {children}
                 </div>
             </div>
