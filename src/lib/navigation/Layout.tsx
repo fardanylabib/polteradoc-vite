@@ -25,7 +25,7 @@ export const Layout = ({children=<div/>}) =>{
     const [getUser, {loading:usrLoading, error:usrError, data:usrData}] = useLazyQuery(USER_PERMISSIONS_ME);
   
     const userRole = userAuth?.user?.role?.data.attributes.name;    
-    const userPhoto = userAuth.user?.student?.data?.attributes.person.data?.attributes.photo?.data?.attributes.url;
+    const userPhoto = userAuth.user?.student?.data?.attributes.person.data?.attributes.photo?.data?.attributes.url || userAuth.user?.lecturer?.data?.attributes.person.data?.attributes.photo?.data?.attributes.url;
 
     const selectPath = (obj:any, path:string, titlePath:string, url:string) => {
         if(obj.submenu){

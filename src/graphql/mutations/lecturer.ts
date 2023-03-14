@@ -1,10 +1,18 @@
 import { gql } from "@apollo/client";
 
-export const LECTURER_GET_BY_ID = gql`
-    query LecturerByID(
-        $id: ID
-    ) {
-        lecturer(id: $id) {
+export const LECTURER_CREATE = gql`
+    mutation LecturerCreate(
+        $position: ENUM_LECTURER_POSITION
+        $studyProgramID: ID
+        $userID: ID
+        $personID: ID
+    ){
+        createLecturer(data:{
+            position: $position
+            studyProgram: $studyProgramID
+            user: $userID
+            person: $personID
+        }){
             data{
                 id
                 attributes{
@@ -14,14 +22,6 @@ export const LECTURER_GET_BY_ID = gql`
                             id
                             attributes{
                                 name
-                            }
-                        }
-                    }
-                    user{
-                        data{
-                            id
-                            attributes{
-                                email
                             }
                         }
                     }
@@ -44,35 +44,44 @@ export const LECTURER_GET_BY_ID = gql`
                             }
                         }
                     }
+                    user{
+                        data{
+                            id
+                        }
+                    }
                 }
             }
         }
     }
 `;
 
-export const STUDENT_GET_BY_ID = gql`
-    query StudentByID(
-        $id: ID
-    ) {
-        student(id: $id) {
+
+export const LECTURER_UPDATE = gql`
+    mutation LecturerUpdate(
+        $id: ID!
+        $position: ENUM_LECTURER_POSITION
+        $studyProgramID: ID
+        $userID: ID
+        $personID: ID
+    ){
+        updateLecturer(
+            id: $id,
+            data:{
+                position: $position
+                studyProgram: $studyProgramID
+                user: $userID
+                person: $personID
+            }
+        ){
             data{
                 id
                 attributes{
-                    class
-                    year
+                    position
                     studyProgram{
                         data{
                             id
                             attributes{
                                 name
-                            }
-                        }
-                    }
-                    user{
-                        data{
-                            id
-                            attributes{
-                                email
                             }
                         }
                     }

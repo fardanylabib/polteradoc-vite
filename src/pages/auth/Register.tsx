@@ -4,13 +4,12 @@ import { Button } from '../../lib/controls/Button'
 import { TextField } from '../../lib/controls/TextField'
 import RegisterImage from '../../assets/register.jpg'
 import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from '../../AppContext';
 import { useNavigate } from "react-router";
 import { IUsersPermissionsRegisterInput, UsersPermissionsRegisterInput } from '../../models/user'
 import { useMutation } from '@apollo/client'
 import {  USER_REGISTER } from '../../graphql/mutations/users'
-import { routes } from '../../constants/menu'
 
 export default function Register() {
   const {removeUserAuth, setUserWithExpiryDate} = useContext(AppContext);
@@ -32,7 +31,7 @@ export default function Register() {
 
   useEffect(()=>{
     if(data){
-      console.log(data);
+      window.pushToast("Registrasi berhasil, silahkan login");
     }
   },[data]);
 

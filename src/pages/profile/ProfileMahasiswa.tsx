@@ -168,7 +168,7 @@ export default function ProfileMahasiswa(){
                     <div className="flex-grow pl-5">
                         {/* Person Data */}
                         <div className="mb-5">
-                            <FieldLabel label="Nama"/>
+                            <FieldLabel label="Nama Lengkap"/>
                             <TextField name="person.data.attributes.name" type="text" placeholder="Nama mahasiswa" onChange={formik.handleChange} value={values.person.data.attributes.name}/>
                         </div>
                         <div className="mb-5">
